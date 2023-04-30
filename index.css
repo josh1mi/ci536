@@ -1,0 +1,105 @@
+:root{
+    --background:#F3C77E;
+    --main:##F3C77E;
+    --light:#ffd693;
+    --beige:#EEE9DA;
+    
+}
+
+html, body {
+    margin: 0;
+    height: 100%;
+}
+
+body{
+    
+    background-color: var(--background);
+    font-family: 'Poppins', sans-serif;
+    
+   
+
+
+}
+nav{
+    background-color: var(--main);
+    display: flex;
+    justify-content: space-between ;
+    
+    padding: 1rem 2rem;
+}
+ul{
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    border: 0;
+    margin: 0;
+    padding: 0;
+
+}
+
+nav a {
+    position: relative;
+  }
+  
+  nav a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0%;
+    height: 2px;
+    background-color: black;
+    transition: width 0.3s ease-in-out;
+  }
+  
+  nav a:hover::after {
+    width: 100%;
+  }
+
+a{
+    text-decoration: none;
+    color: black
+}
+
+#nav1{
+    align-items: right;
+}
+
+#nav2{
+    display: flex;
+    justify-content: space-between;
+}
+#nav2 > * {
+    padding-left:  1rem;
+    
+}
+
+h1{
+    padding: 0;
+    margin: 0;
+}
+
+.boxes{
+    display: grid;
+    grid-template-columns: 2;
+    grid-template-rows: 2;
+}
+
+.box{
+   background-color: var(--light);
+   margin: 0.3rem;
+}
+.box.one{
+    grid-column: 2/2;
+    grid-row: span 3;
+}
+.box.two{
+    grid-column: span 1;
+}
+.box.three{
+    grid-column: span 1;
+}
+
+footer{
+    text-align: center;
+}
