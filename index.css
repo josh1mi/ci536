@@ -1,105 +1,183 @@
-:root{
-    --background:#F3C77E;
-    --main:##F3C77E;
-    --light:#ffd693;
-    --beige:#EEE9DA;
-    
+:root {
+  --background: #394d5f;
+  --main: #4a6f89;
+  --light: #ffd693;
+  --beige: #eee9da;
 }
 
-html, body {
-    margin: 0;
-    height: 100%;
+body {
+  background-color: var(--background);
+  font-family: "Poppins", sans-serif;
+
+  display: flex;
+  flex-direction: column;
 }
+nav {
+  background-color: var(--background);
+  display: flex;
+  justify-content: space-between;
 
-body{
-    
-    background-color: var(--background);
-    font-family: 'Poppins', sans-serif;
-    
-   
-
-
+  padding: 1rem 2rem;
 }
-nav{
-    background-color: var(--main);
-    display: flex;
-    justify-content: space-between ;
-    
-    padding: 1rem 2rem;
-}
-ul{
-    display: flex;
-    flex-direction: row;
-    list-style: none;
-    border: 0;
-    margin: 0;
-    padding: 0;
-
+ul {
+  display: flex;
+  flex-direction: row;
+  list-style: none;
+  border: 0;
+  margin: 0;
+  padding: 0;
 }
 
 nav a {
-    position: relative;
-  }
-  
-  nav a::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 0%;
-    height: 2px;
-    background-color: black;
-    transition: width 0.3s ease-in-out;
-  }
-  
-  nav a:hover::after {
-    width: 100%;
-  }
-
-a{
-    text-decoration: none;
-    color: black
+  position: relative;
 }
 
-#nav1{
-    align-items: right;
+nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0%;
+  height: 2px;
+  background-color: black;
+  transition: width 0.3s ease-in-out;
 }
 
-#nav2{
-    display: flex;
-    justify-content: space-between;
+nav a:hover::after {
+  width: 100%;
+}
+
+a {
+  text-decoration: none;
+  color: rgb(51, 49, 49);
+}
+
+#nav1 {
+  align-items: right;
+}
+
+#nav2 {
+  display: flex;
+  justify-content: space-between;
 }
 #nav2 > * {
-    padding-left:  1rem;
-    
+  padding-left: 1rem;
 }
 
-h1{
-    padding: 0;
-    margin: 0;
+h1 {
+  padding: 0;
+  margin: 0;
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 85vh;
+}
+.boxes {
+  display: grid;
+  align-self: center;
+  grid-template-columns: 2;
+  grid-template-rows: 2;
+
+  width: 70%;
 }
 
-.boxes{
-    display: grid;
-    grid-template-columns: 2;
-    grid-template-rows: 2;
+.box {
+  /* background-color: var(--light); */
+  margin: 0.3rem;
+}
+.box.one {
+  grid-column: 2/2;
+  grid-row: span 3;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+
+  flex-direction: column;
+}
+.box.two {
+  grid-column: span 1;
+  font-size: 4rem;
+}
+.box.three {
+  grid-column: span 1;
+  font-size: 0.9rem;
 }
 
-.box{
-   background-color: var(--light);
-   margin: 0.3rem;
-}
-.box.one{
-    grid-column: 2/2;
-    grid-row: span 3;
-}
-.box.two{
-    grid-column: span 1;
-}
-.box.three{
-    grid-column: span 1;
+footer {
+  text-align: center;
 }
 
-footer{
-    text-align: center;
+#bickerButton {
+  background-color: var(--main);
+  border: none;
+  padding: 1rem 1rem;
+  border-radius: 30px;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  margin-right: 1rem;
+  margin-bottom: 1rem;
+}
+#bickerButton:hover {
+  transform: translateY(3px);
+  box-shadow: 0 0 12px 5px var(--main), 0 0 10px 7px #ffffff;
+}
+
+#shadow {
+  text-shadow: 0 0 48px rgb(255, 255, 255);
+  padding: 0;
+  margin: 0;
+  text-align: left;
+  vertical-align: middle;
+}
+
+#shadow2 {
+  text-shadow: 0 0 1200px rgb(209, 209, 209);
+  vertical-align: middle;
+  margin: 0;
+  text-align: right;
+}
+hr {
+  width: 0;
+}
+
+#bicker {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  margin-right: 1rem;
+  margin-bottom: 1rem;
+  background-color: #2e4050;
+  border-radius: 8px;
+  border: solid black 3px;
+  z-index: 10;
+}
+
+.bicker-container {
+}
+
+#bicker-information {
+  font-size: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+#bicker-information > input {
+  border-radius: 1rem;
+}
+
+#submit {
+  margin: 1rem;
+}
+
+#name {
+  font-size: 1rem;
+}
+
+#email {
+  font-size: 1rem;
 }

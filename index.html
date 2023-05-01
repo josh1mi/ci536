@@ -1,51 +1,74 @@
 <!DOCTYPE html>
-<html>
-<head>
-	<title>BickerBot</title>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="index.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet"> 
-</head>
-<body>
-	<header>
-		<nav>
-            <ul id="nav1">
-            <li><h1>bickerbot</h1></li>
+<html lang="en">
+  <head>
+    <title>BickerBot</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="index.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header>
+      <nav>
+        <ul id="nav1">
+          <li><h1>bickerbot</h1></li>
         </ul>
-			<ul id="nav2">
-				<li><a href="#">Home</a></li>
-				<li><a href="#">About</a></li>
-				<li><a href="#">Services</a></li>
-				<li><a href="#">Contact</a></li>
-			</ul>
-		</nav>
-	</header>
-	
-	<main>
-		<div class="container">
-            <div class="boxes">
-              <div class="box one">Box 1</div>
-              <div class="box two">Box 2</div>
-              <div class="box three">Box 3</div>
-            </div>
-            
-        </div>
-	</main>
-    <div class="bickerContainer">
-        .
-    </div>
-	
-	<footer>
-	
-			<p>&copy; 2023, Joey, Ben, Josh, James. All rights reserved.</p>
-			
-		</div>
-	</footer>
+        <ul id="nav2">
+          <li><a href="#">Home</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Services</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
 
-    
-    <script src="index.js"></script>
-</body>
+    <main>
+      <div class="container">
+        <div class="boxes">
+          <div class="box one">
+            <p id="shadow">
+              An A.i bot designed to help you with everyday tasks..
+            </p>
+
+            <p id="shadow2">...with a twist</p>
+          </div>
+          <div class="box two"><h1 id="shadow">bickerbot</h1></div>
+          <div class="box three">
+            <button id="bickerButton" onclick="displayChatBot()">
+              Click Here!
+            </button>
+          </div>
+        </div>
+      </div>
+      <div id="bicker">
+        <div class="bicker nav">
+          <button><a href="">X</a></button>
+        </div>
+        <div class="bicker-container">
+          <form id="bicker-information">
+            <for id="name">Name</for>
+            <input type="text" id="name" placeholder="John Smith" required />
+            <for id="email">Email</for>
+            <input
+              type="email"
+              id="email"
+              placeholder="Enter your email..."
+              required
+            />
+            <button type="submit" id="submit">Submit</button>
+          </form>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <p>&copy; 2023, Joey, Ben, Josh, James. All rights reserved.</p>
+    </footer>
+    <script src="./index.js"></script>
+  </body>
 </html>
