@@ -3,7 +3,7 @@ import tkinter as tk
 class ChatbotApp:
     def __init__(self):
         self.root = tk.Tk()
-        self.root.title("BickerBot")
+        self.root.title("Bicker Dawg")
         self.root.geometry("500x600")
         self.root.configure(background="#394D5F")
 
@@ -41,14 +41,14 @@ class ChatbotApp:
         user_message_frame = tk.Frame(self.user_chat_window, borderwidth=0, highlightthickness=0, highlightbackground="#DDD", relief="groove", bg="#ECE5DD")
         user_message_frame.pack(side=tk.TOP, fill=tk.BOTH, padx=10, pady=(0, 5), anchor=tk.NE)
 
-        user_message_label = tk.Label(user_message_frame, text=user_input, font=self.message_font, bg="#ECE5DD", fg="black", wraplength=200, justify="right")
+        user_message_label = tk.Label(user_message_frame, text=user_input, font=self.message_font, bg="#ECE5DD", fg="black", wraplength=200, justify="right", padx=0, pady=0)
         user_message_label.pack(side=tk.LEFT, padx=10, pady=5)
 
         self.bot_chat_window.configure(highlightbackground="#DDD")
         self.bot_chat_window.pack_configure(pady=(10, 0))
 
         bot_message_frame = tk.Frame(self.bot_chat_window, borderwidth=0, highlightthickness=0, highlightbackground="#DDD", relief="groove", bg="#5B8DB0")
-        bot_message_frame.pack(side=tk.TOP, fill=tk.BOTH, padx=10, pady=(0, 5), anchor=tk.NW)
+        bot_message_frame.pack(side=tk.TOP, fill=tk.BOTH, padx=10, pady=(10, 5), anchor=tk.NW)
 
         bot_message_label = tk.Label(bot_message_frame, text="...", font=self.message_font, bg="#5B8DB0", fg="white", wraplength=200, justify="left")
         bot_message_label.pack(side=tk.LEFT, padx=10, pady=5)
