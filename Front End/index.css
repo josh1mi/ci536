@@ -90,7 +90,7 @@ h1 {
 }
 .box.one {
   grid-column: 2/2;
-  grid-row: span 3;
+  grid-row: span 2;
   padding: 0;
   margin: 0;
   display: flex;
