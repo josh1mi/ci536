@@ -1,3 +1,7 @@
 {
-  "cSpell.words": ["borderwidth", "dearpygui", "highlightbackground"]
+  "cSpell.words": ["borderwidth", "dearpygui", "highlightbackground"],
+  "[python]": {
+    "editor.defaultFormatter": "ms-python.black-formatter"
+  },
+  "python.formatting.provider": "none"
 }
