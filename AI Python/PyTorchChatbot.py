@@ -1,4 +1,6 @@
 import tkinter as tk;
+from PyTorchBackend import *
+
 class ChatbotApp:
     def __init__(self):
         self.root = tk.Tk()
@@ -32,7 +34,7 @@ class ChatbotApp:
 
     def handle_input(self):
         user_input = self.input_field.get()
-        bot_response = "Hello, you said: " + user_input
+        bot_response = bot.get_response(user_input)
 
         self.user_chat_window.configure(highlightbackground="#DDD")
         self.user_chat_window.pack_configure(pady=(20, 0))

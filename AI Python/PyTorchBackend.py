@@ -1,7 +1,9 @@
 from chatterbot import ChatBot
+from PyTorchChatbot import *
 
 bot = ChatBot(
     'Bicker',
+    read_only=True,
     storage_adapter='chatterbot.storage.SQLStorageAdapter',
     logic_adapters=[
         'chatterbot.logic.MathematicalEvaluation',
@@ -15,15 +17,58 @@ from chatterbot.trainers import ListTrainer
 
 trainer = ListTrainer(bot)
 
+#Train first stage of conversation
 trainer.train([
-    'How are you?',
-    'I am good.',
-    'That is good to hear.',
-    'Thank you.',
-    'You are welcome.'
+    'I need help',
+    'What is the nature of the issue?',
+])
+trainer.train([
+    'I need a plumber',
+    'What is the nature of the issue?',
+])
+trainer.train([
+    'My boiler done broke',
+    'What is the nature of the issue?',
+])
+trainer.train([
+    'I\'m having heating issues',
+    'What is the nature of the issue?',
 ])
 
-print('Type something to begin...')
+#Train second stage of conversation
+trainer.train([
+    'The drain is blocked',
+    'Have you tried using drain unblocker?',
+    'Yes',
+    'Is the issue still persisting?',
+])
+trainer.train([
+    'There is no hot water',
+    'Have you tried restarting your boiler?',
+    'Yes',
+    'Is the issue still persisting?',
+])
+trainer.train([
+    'My radiator is not working',
+    'Have you tried bleeding the radiator?',
+    'Yes',
+    'Is the issue still persisting?',
+])
+
+#Train third stage of conversation
+trainer.train([
+    'YES',
+    'Are you a returning customer?',
+])
+trainer.train([
+    'YES',
+    'Are you a returning customer?',
+])
+trainer.train([
+    'It\'s still broken',
+    'Are you a returning customer?',
+])
+print('Hello, I\'m BickerBot. How may I help you today?')
 
 while True:
     try:
