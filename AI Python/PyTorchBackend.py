@@ -1,5 +1,4 @@
 from chatterbot import ChatBot
-from PyTorchChatbot import *
 
 bot = ChatBot(
     'Bicker',
@@ -7,7 +6,6 @@ bot = ChatBot(
     storage_adapter='chatterbot.storage.SQLStorageAdapter',
     logic_adapters=[
         'chatterbot.logic.MathematicalEvaluation',
-        'chatterbot.logic.TimeLogicAdapter',
         'chatterbot.logic.BestMatch'
     ],
     database_uri='sqlite:///database.sqlite3'
@@ -59,10 +57,13 @@ trainer.train([
 trainer.train([
     'YES',
     'Are you a returning customer?',
+    'Yes',
+    'What is your customer number?',
 ])
 trainer.train([
     'YES',
     'Are you a returning customer?',
+    'No',
 ])
 trainer.train([
     'It\'s still broken',
