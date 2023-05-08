@@ -1,5 +1,5 @@
 import tkinter as tk;
-from PyTorchBackend import *
+from Model import *
 
 class ChatbotApp:
     def __init__(self):
@@ -39,7 +39,7 @@ class ChatbotApp:
         self.user_chat_window.configure(highlightbackground="#DDD")
         self.user_chat_window.pack_configure(pady=(20, 0))
   
-        user_message_frame = tk.Frame(self.user_chat_window, borderwidth=0, highlightthickness=0, highlightbackground="#DDD", relief="groove", bg="#ECE5DD")
+        user_message_frame = tk.Frame(self.user_chat_window, borderwidth=0, highlightthickness=3, highlightbackground="#DDD", relief="groove", bg="#ECE5DD")
         user_message_frame.pack(side=tk.TOP, fill=tk.BOTH, padx=10, pady=(0, 10), anchor=tk.NE)
 
         user_message_label = tk.Label(user_message_frame, text=user_input, font=self.message_font, bg="#ECE5DD", fg="black", wraplength=200, justify="right", padx=10, pady=5)
@@ -48,7 +48,7 @@ class ChatbotApp:
         self.bot_chat_window.configure(highlightbackground="#DDD")
         self.bot_chat_window.pack_configure(pady=(20, 0))
 
-        bot_message_frame = tk.Frame(self.bot_chat_window, borderwidth=0, highlightthickness=0, highlightbackground="#DDD", relief="groove", bg="#5B8DB0")
+        bot_message_frame = tk.Frame(self.bot_chat_window, borderwidth=0, highlightthickness=3, highlightbackground="#DDD", relief="groove", bg="#5B8DB0")
         bot_message_frame.pack(side=tk.TOP, fill=tk.BOTH, padx=10, pady=(10, 10), anchor=tk.NW)
 
         bot_message_label = tk.Label(bot_message_frame, text="...", font=self.message_font, bg="#5B8DB0", fg="white", wraplength=200, justify="left", padx=10, pady=5)
