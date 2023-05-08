@@ -1,6 +1,5 @@
 from chatterbot import ChatBot
 
-
 bot = ChatBot(
         'Bicker',
         read_only=True,
@@ -15,6 +14,7 @@ bot = ChatBot(
 from chatterbot.trainers import ListTrainer
 
 trainer = ListTrainer(bot)
+
 
     #Train first stage of conversation
 trainer.train([
