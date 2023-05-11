@@ -1,14 +1,26 @@
 from chatterbot import ChatBot
 
-
 bot = ChatBot(
         'Bicker',
         read_only=True,
+        preprocessors=['chatterbot.preprocessors.clean_whitespace',
+                       'chatterbot.preprocessors.convert_to_ascii'],
         storage_adapter='chatterbot.storage.SQLStorageAdapter',
         logic_adapters=[
-            'chatterbot.logic.MathematicalEvaluation',
-            'chatterbot.logic.BestMatch'
+            {
+                'import_path': 'chatterbot.logic.BestMatch',
+                'default_response': 'I\'m sorry, I don\'t understand, please try asking something else',
+                'maximum_similarity_threshold': 0.90
+                # 'statement_comparison_function': 'chatterbot.comparisons.LevenshteinDistance',
+                # 'response_selection_method': 'chatterbot.response_selection.get_first_response'
+            },
+            {
+                'import_path': 'chatterbot.logic.SpecificResponseAdapter',
+                'input_text': 'Log in',
+                'output_text': 'Please enter your customer number.'
+            }
         ],
+        # filters=[filters.get_recent_repeated_responses],
         database_uri='sqlite:///database.sqlite3'
     )
 
@@ -59,7 +71,7 @@ trainer.train([
         'YES',
         'Are you a returning customer?',
         'Yes',
-        'What is your customer number?',
+        'Type \'Log in\' to continue',
     ])
 trainer.train([
         'YES',
