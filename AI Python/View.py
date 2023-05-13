@@ -10,7 +10,7 @@ from PIL import Image, ImageTk
 class ChatbotApp:
     def __init__(self):
         self.root = tk.Tk()
-        self.root.title("Bicker Dawg")
+        self.root.title("Bicker Bot")
         self.root.geometry("500x600")
         self.root.configure(background="#394D5F")
 
@@ -49,11 +49,12 @@ class ChatbotApp:
         )
         self.input_field.pack(side=tk.LEFT, padx=(0, 10), fill=tk.X, expand=True)
 
-        send_icon = ImageTk.PhotoImage(Image.open("sendIcon.png"))
+        # send_icon = ImageTk.PhotoImage(Image.open("sendIcon.png"))
 
         self.send_button = tk.Button(
             self.input_frame,
-            image=send_icon,
+            text="Send",
+            # image=send_icon,
             bg=self.header_bg_color,
             fg=self.header_fg_color,
             command=self.handle_input,
@@ -63,10 +64,29 @@ class ChatbotApp:
     def handle_input(self):
         user_input = self.input_field.get()
         bot_response = bot.get_response(user_input)
+        usernameVar=tk.StringVar()
+        passwordVar=tk.StringVar()
 
         self.user_chat_window.configure(highlightbackground="#DDD")
         self.user_chat_window.pack_configure(pady=(20, 0))
 
+        if (user_input == 'Log in') :
+            login_window=tk.Tk()
+            login_window.geometry('300x200')
+
+            label=tk.Label("User ID: ")
+            entry=tk.Entry(login_window, textvariable=usernameVar)
+
+            sub_btn=tk.Button(login_window,text = 'Submit', command = submit)
+
+            label.grid(row=0, column=0)
+            entry.grid(row=0, column=1)
+            login_window.mainloop()
+        
+        def submit():
+            username=usernameVar.get()
+            password=passwordVar.get()
+    
         user_message_frame = tk.Frame(
             self.user_chat_window,
             borderwidth=0,
