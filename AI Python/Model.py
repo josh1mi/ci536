@@ -87,8 +87,8 @@ print('Hello, I\'m BickerBot. How may I help you today?')
 
 while True:
     try:
+        break
         bot_input = bot.get_response(input())
         print(bot_input)
-
     except(KeyboardInterrupt, EOFError, SystemExit):
         break
