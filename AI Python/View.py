@@ -75,6 +75,10 @@ class ChatbotApp:
             self.login_window=tk.Tk()
             self.login_window.title("Log in")
             self.login_window.geometry('300x200')
+            
+        if user_input.lower() == 'thank you':
+            self.root.destroy()  # Close the application
+            return
 
             self.login_frame = tk.Frame(self.login_window, bg="#94D5F")
             self.login_frame.pack(side=tk.TOP, fill=tk.BOTH, expand=True, padx=10, pady=10)
