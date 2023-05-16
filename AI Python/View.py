@@ -76,7 +76,7 @@ class ChatbotApp:
             self.login_window.title("Log in")
             self.login_window.geometry('300x200')
 
-            self.login_frame = tk.Frame(self.login_window, bg="#34D5F")
+            self.login_frame = tk.Frame(self.login_window, bg="#94D5F")
             self.login_frame.pack(side=tk.TOP, fill=tk.BOTH, expand=True, padx=10, pady=10)
 
             self.username_frame = tk.Frame(self.login_frame, bg='#394D5F')
@@ -158,6 +158,9 @@ class ChatbotApp:
     def run(self):
         self.root.mainloop()
 
+    def bind_enter_key(self):
+        self.input_field.bind("<Return>", lambda event: self.handle_input())
 
 chatbot_app = ChatbotApp()
+chatbot_app.bind_enter_key()
 chatbot_app.run()
