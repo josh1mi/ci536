@@ -59,7 +59,7 @@ class ChatbotApp:
         bg=self.header_bg_color,
         fg=self.header_fg_color,
         command=self.handle_input,
-)
+        )
         self.send_button.pack(side=tk.RIGHT, padx=(0, 10))
 
     def handle_input(self):
@@ -72,17 +72,22 @@ class ChatbotApp:
         self.user_chat_window.pack_configure(pady=(20, 0))
 
         if (user_input == 'Log in') :
-            login_window=tk.Tk()
-            login_window.geometry('300x200')
+            self.login_window=tk.Tk()
+            self.login_window.title("Log in")
+            self.login_window.geometry('300x200')
 
+            self.login_frame = tk.Frame(self.login_window, bg="#394D5F")
+            self.login_frame.pack(side=tk.TOP, fill=tk.BOTH, expand=True, padx=10, pady=10)
+
+            self.username_frame = tk.Frame(self.login_frame, bg='#394D5F')
             label=tk.Label("User ID: ")
-            entry=tk.Entry(login_window, textvariable=usernameVar)
+            entry=tk.Entry(self.username_frame, textvariable=usernameVar)
 
-            sub_btn=tk.Button(login_window,text = 'Submit', command = submit)
+            sub_btn=tk.Button(self.login_frame, text = 'Submit', command = submit)
 
             label.grid(row=0, column=0)
             entry.grid(row=0, column=1)
-            login_window.mainloop()
+            self.login_window.mainloop()
         
         def submit():
             username=usernameVar.get()

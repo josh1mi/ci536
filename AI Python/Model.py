@@ -1,4 +1,5 @@
 from chatterbot import ChatBot
+from chatterbot.trainers import ListTrainer
 
 bot = ChatBot(
         'Bicker',
@@ -23,8 +24,6 @@ bot = ChatBot(
         # filters=[filters.get_recent_repeated_responses],
         database_uri='sqlite:///database.sqlite3'
     )
-
-from chatterbot.trainers import ListTrainer
 
 trainer = ListTrainer(bot)
 
