@@ -19,6 +19,11 @@ bot = ChatBot(
                 'import_path': 'chatterbot.logic.SpecificResponseAdapter',
                 'input_text': 'Log in',
                 'output_text': 'Please enter your customer number.'
+            },
+            {
+                'import_path': 'chatterbot.logic.SpecificResponseAdapter',
+                'input_text': 'help',
+                'output_text': 'Here is a list of phrases to input:\nLog in\nMy boiler is broken\nI have a leak\nI\'m having heating issues'
             }
         ],
         # filters=[filters.get_recent_repeated_responses],
@@ -26,6 +31,15 @@ bot = ChatBot(
     )
 
 trainer = ListTrainer(bot)
+
+trainer.train([
+    'help',
+    'Here is a list of phrases to input:',
+    'Log in',
+    'My boiler is broken',
+    'I have a leak',
+    'I\'m having heating issues',
+])
 
     #Train first stage of conversation
 trainer.train([
