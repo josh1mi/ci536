@@ -41,6 +41,12 @@ trainer.train([
     'I\'m having heating issues',
 ])
 
+
+trainer.train([
+        'Help',
+        'Things you can ask me:',
+    ])
+
     #Train first stage of conversation
 trainer.train([
         'I need help',
