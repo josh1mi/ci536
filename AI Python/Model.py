@@ -27,6 +27,12 @@ bot = ChatBot(
 
 trainer = ListTrainer(bot)
 
+
+trainer.train([
+        'Help',
+        'Things you can ask me:',
+    ])
+
     #Train first stage of conversation
 trainer.train([
         'I need help',
