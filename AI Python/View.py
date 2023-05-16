@@ -49,16 +49,17 @@ class ChatbotApp:
         )
         self.input_field.pack(side=tk.LEFT, padx=(0, 10), fill=tk.X, expand=True)
 
-        # send_icon = ImageTk.PhotoImage(Image.open("sendIcon.png"))
-
+        self.root.sendIcon = tk.PhotoImage(file="AI Python/sendIcon.png")
+        self.root.sendIcon = self.root.sendIcon.subsample(15)
+        
         self.send_button = tk.Button(
-            self.input_frame,
-            text="Send",
-            # image=send_icon,
-            bg=self.header_bg_color,
-            fg=self.header_fg_color,
-            command=self.handle_input,
-        )
+        self.input_frame,
+        text="Send",
+        image = self.root.sendIcon,
+        bg=self.header_bg_color,
+        fg=self.header_fg_color,
+        command=self.handle_input,
+)
         self.send_button.pack(side=tk.RIGHT, padx=(0, 10))
 
     def handle_input(self):
