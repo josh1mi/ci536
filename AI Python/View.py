@@ -15,6 +15,8 @@ class ChatbotApp:
         self.header_bg_color = "#075E54"  # WhatsApp header color
         self.header_fg_color = "white"
         self.message_font = ("Helvetica", 12)
+        self.user_message_color = "#DCF8C6"  # Light green color for user messages
+        self.bot_message_color = "white"  # White color for bot messages
 
         # Chat window
         self.chat_frame = tk.Frame(self.root, bg="#F0F0F0", borderwidth=0, highlightthickness=0)
@@ -28,6 +30,30 @@ class ChatbotApp:
         )
         self.chat_window.pack(side=tk.LEFT, fill=tk.BOTH, expand=True)
 
+        # Add scrollbar to the chat window
+        scrollbar = tk.Scrollbar(self.chat_frame)
+        scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
+
+        self.user_listbox = tk.Listbox(
+            self.chat_window,
+            bg="#ECECEC",  # Light background color
+            font=self.message_font,
+            relief="flat",
+            yscrollcommand=scrollbar.set  # Connect scrollbar to the listbox
+        )
+        self.user_listbox.pack(side=tk.LEFT, fill=tk.BOTH, expand=True)
+
+        self.bot_listbox = tk.Listbox(
+            self.chat_window,
+            bg="#ECECEC",  # Light background color
+            font=self.message_font,
+            relief="flat",
+            yscrollcommand=scrollbar.set  # Connect scrollbar to the listbox
+        )
+        self.bot_listbox.pack(side=tk.LEFT, fill=tk.BOTH, expand=True)
+
+        scrollbar.config(command=self.user_listbox.yview)  # Configure scrollbar with user listbox
+
         # Input field and send button
         self.input_frame = tk.Frame(self.root, bg="#F0F0F0", borderwidth=0, highlightthickness=0)
         self.input_frame.pack(side=tk.BOTTOM, fill=tk.X)
@@ -39,6 +65,7 @@ class ChatbotApp:
             bg="white",  # White input field background
             fg="black",  # Black text color
             relief="flat",
+            justify="right",  # Align text to the right
         )
         self.input_field.pack(side=tk.LEFT, padx=(10, 0), fill=tk.X, expand=True)
 
@@ -76,8 +103,11 @@ class ChatbotApp:
         # Apply drop shadow effect and drop border to the chat window
         self.add_drop_shadow_effect(self.chat_window)
 
-        # Apply drop border to the input field
+        # Apply drop border effect to the input field
         self.input_field.config(borderwidth=2, relief="groove")
+
+        # Apply WhatsApp theme to chat messages
+        self.apply_whatsapp_theme()
 
     def remove_green_background(self, image):
         # Convert PhotoImage to PIL Image
@@ -134,69 +164,21 @@ class ChatbotApp:
         blurred_image = image.filter(ImageFilter.BLUR)
         return ImageTk.PhotoImage(blurred_image)
 
+    def apply_whatsapp_theme(self):
+        self.user_listbox.config(bg="#ECECEC", fg="black")
+        self.bot_listbox.config(bg="#ECECEC", fg="black")
+        self.input_field.config(bg="#F0F0F0", fg="black")
+        self.send_button.config(bg="#F0F0F0", fg="black")
+
     def display_user_message(self, message):
-        message_frame = ttk.Frame(
-            self.chat_window,
-            style="MessageFrame.TFrame",  # Added style
-            padding=(10, 5, 0, 5),  # Adjusted padding (left padding decreased)
-        )
-        message_frame.pack(side=tk.TOP, fill=tk.BOTH, anchor=tk.NE)  # Anchor to the top-right
-
-        message_label = tk.Label(
-            message_frame,
-            text=message,
-            font=self.message_font,
-            bg="#DCF8C6",
-            fg="black",
-            wraplength=480,  # Adjust the wrap length according to your screen size
-            justify="right",  # Align the text to the right
-            padx=10,  # Add padding inside the text bubble (left padding decreased)
-            pady=5,  # Add padding inside the text bubble
-            bd=1,  # Add a border around the text bubble
-            relief=tk.SOLID,  # Set the border style to solid
-            borderwidth=1,  # Set the border width
-            highlightthickness=0,  # Remove the highlight thickness
-            highlightbackground="#DCF8C6",  # Set the highlight background color to match the text bubble background
-            highlightcolor="#DCF8C6"  # Set the highlight color to match the text bubble background
-        )
-        message_label.pack(side=tk.RIGHT)  # Pack the label to the right side
-
-        if self.last_displayed_bot_response:
-            self.last_displayed_bot_response.pack_configure(pady=5)
-
-        self.last_displayed_user_message = message_frame
+        self.user_listbox.insert(tk.END, message)  # Remove the newline character at the end of the message
+        self.user_listbox.itemconfig(tk.END, bg=self.user_message_color, fg="black")  # Set message color
+        self.user_listbox.see(tk.END)  # Scroll to the latest message
 
     def display_bot_response(self, message):
-        message_frame = ttk.Frame(
-            self.chat_window,
-            style="MessageFrame.TFrame",  # Added style
-            padding=(10, 5, 0, 5),  # Adjusted padding
-        )
-        message_frame.pack(side=tk.TOP, fill=tk.BOTH, anchor=tk.NE)
-
-        message_label = tk.Label(
-            message_frame,
-            text=message,
-            font=self.message_font,
-            bg="white",
-            fg="black",
-            wraplength=480,  # Adjust the wrap length according to your screen size
-            justify="right",
-            padx=10,  # Add padding inside the text bubble
-            pady=5,  # Add padding inside the text bubble
-            bd=1,  # Add a border around the text bubble
-            relief=tk.SOLID,  # Set the border style to solid
-            borderwidth=1,  # Set the border width
-            highlightthickness=0,  # Remove the highlight thickness
-            highlightbackground="white",  # Set the highlight background color to match the text bubble background
-            highlightcolor="white"  # Set the highlight color to match the text bubble background
-        )
-        message_label.pack(side=tk.LEFT)
-
-        if self.last_displayed_user_message:
-            self.last_displayed_user_message.pack_configure(pady=5)
-
-        self.last_displayed_bot_response = message_frame
+       self.bot_listbox.insert(tk.END, message)  # Remove the newline character at the end of the message
+       self.bot_listbox.itemconfig(tk.END, bg=self.bot_message_color, fg="black")  # Set message color
+       self.bot_listbox.see(tk.END)  # Scroll to the latest message
 
     def handle_input(self):
         user_input = self.input_field.get()
