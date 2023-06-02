@@ -9,7 +9,7 @@ class ChatbotApp:
     def __init__(self):
         self.root = tk.Tk()
         self.root.title("Bicker Bot")
-        self.root.geometry("500x600")
+        self.root.geometry("500x900")
         self.root.configure(background="#F0F0F0")  # Light gray background
 
         self.header_bg_color = "#075E54"  # WhatsApp header color
@@ -138,7 +138,7 @@ class ChatbotApp:
         message_frame = ttk.Frame(
             self.chat_window,
             style="MessageFrame.TFrame",  # Added style
-            padding=(10, 5, 0, 5),  # Adjusted padding (left padding decreased)
+            padding=(10, 5, 0, 5),  # Adjusted padding
         )
         message_frame.pack(side=tk.TOP, fill=tk.BOTH, anchor=tk.NE)  # Anchor to the top-right
 
@@ -148,7 +148,7 @@ class ChatbotApp:
             font=self.message_font,
             bg="#DCF8C6",
             fg="black",
-            wraplength=480,  # Adjust the wrap length according to your screen size
+            wraplength=480,
             justify="right",  # Align the text to the right
             padx=10,  # Add padding inside the text bubble (left padding decreased)
             pady=5,  # Add padding inside the text bubble
@@ -180,7 +180,7 @@ class ChatbotApp:
             font=self.message_font,
             bg="white",
             fg="black",
-            wraplength=480,  # Adjust the wrap length according to your screen size
+            wraplength=480,
             justify="right",
             padx=10,  # Add padding inside the text bubble
             pady=5,  # Add padding inside the text bubble
@@ -202,12 +202,48 @@ class ChatbotApp:
         user_input = self.input_field.get()
         bot_response = bot.get_response(user_input)
 
+        if (user_input == 'Log in'):
+            def login():
+                customer_id = customer_id_entry.get()
+                password = password_entry.get()
+
+                if customer_id == "admin" and password == "password":
+                    result_label.config(text="Login successful!", fg="green")
+                else:
+                    result_label.config(text="Login failed. Invalid credentials.", fg="red")
+
+            branch = tk.Tk()
+            branch.title('Login Window')
+
+            customer_id_label = tk.Label(branch, text="Customer ID:")
+            customer_id_label.pack()
+
+            customer_id_entry = tk.Entry(branch)
+            customer_id_entry.pack()
+
+            password_label = tk.Label(branch, text="Password:")
+            password_label.pack()
+
+            password_entry = tk.Entry(branch, show="*")  # Show asterisks instead of the actual password
+            password_entry.pack()
+
+            login_button = tk.Button(branch, text="Login", command=login)
+            login_button.pack()
+
+            result_label = tk.Label(branch, text="")
+            result_label.pack()
+
+            branch.mainloop()
+
         self.display_user_message(f"{user_input}")
         self.display_bot_response(f"{bot_response}")
 
         self.input_field.delete(0, tk.END)
 
     def run(self):
+        initial_message = bot.get_response('INITIALMESSAGE')
+        self.display_bot_response(initial_message)
+
         self.root.mainloop()
 
     def bind_enter_key(self):
@@ -219,3 +255,5 @@ if __name__ == "__main__":
     chatbot_app = ChatbotApp()
     chatbot_app.bind_enter_key()
     chatbot_app.run()
+
+    chatbot_app.display_bot_response()

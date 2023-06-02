@@ -14,14 +14,14 @@ class ChatbotModel:
             logic_adapters=[
                 {
                     'import_path': 'chatterbot.logic.BestMatch',
-                    'default_response': 'I\'m sorry, I don\'t understand, please try asking something else',
+                    'default_response': 'I\'m sorry, I don\'t understand, please try asking something else, or type \'Help\'',
                     'maximum_similarity_threshold': 0.90
                 },
                 {
                     'import_path': 'chatterbot.logic.SpecificResponseAdapter',
-                    'input_text': 'Log in',
-                    'output_text': 'Please enter your customer number.'
-                }
+                    'input_text': 'INITIALMESSAGE',
+                    'output_text': 'Hello, how may I help you today?'
+                },
             ],
             database_uri='sqlite:///database.sqlite3'
         )
@@ -30,22 +30,16 @@ class ChatbotModel:
 
         # Training data
         self.train_data = [
-            ['Help', 'Things you can ask me:'],
+            ['INITIALMESSAGE', 'Hey! I\'m BickerBot, your virtual assistant. How may I help you? Type your query below, or try saying \'Help\''],
+            ['Help', 'Try saying \'I\'m having heating issues\''],
             ['I need help', 'What is the nature of the issue?'],
             ['I need a plumber', 'What is the nature of the issue?'],
             ['My boiler done broke', 'What is the nature of the issue?'],
             ['I\'m having heating issues', 'What is the nature of the issue?'],
             ['The drain is blocked', 'Have you tried using drain unblocker?'],
-            ['Yes', 'Is the issue still persisting?'],
             ['There is no hot water', 'Have you tried restarting your boiler?'],
-            ['Yes', 'Is the issue still persisting?'],
             ['My radiator is not working', 'Have you tried bleeding the radiator?'],
-            ['Yes', 'Is the issue still persisting?'],
-            ['YES', 'Are you a returning customer?'],
-            ['Yes', 'Type \'Log in\' to continue'],
-            ['YES', 'Are you a returning customer?'],
-            ['No'],
-            ['It\'s still broken', 'Are you a returning customer?']
+            ['Yes', 'If you are a customer, please type \'Log in\' to continue.'],
         ]
 
         self.train_bot()
