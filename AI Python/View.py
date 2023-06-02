@@ -8,11 +8,11 @@ from Model import ChatbotModel
 class ChatbotApp:
     def __init__(self):
         self.root = tk.Tk()
-        self.root.title("Bicker Bot")
+        self.root.title("BickerBot")
         self.root.geometry("500x900")
-        self.root.configure(background="#F0F0F0")  # Light gray background
+        self.root.configure(background="#d5896f")  # Light gray background
 
-        self.header_bg_color = "#075E54"  # WhatsApp header color
+        self.header_bg_color = "#075E54"  # Header color
         self.header_fg_color = "white"
         self.message_font = ("Helvetica", 12)
 
@@ -36,8 +36,8 @@ class ChatbotApp:
             self.input_frame,
             width=40,
             font=self.message_font,
-            bg="white",  # White input field background
-            fg="black",  # Black text color
+            bg="#ffffff",  # White input field background
+            fg="#000000",  # Black text color
             relief="flat",
         )
         self.input_field.pack(side=tk.LEFT, padx=(10, 0), fill=tk.X, expand=True)
@@ -68,7 +68,7 @@ class ChatbotApp:
         style = ttk.Style()
         style.configure(
             "MessageFrame.TFrame",
-            background="#ECECEC",  # Light background color
+            background="#ffffff",  # Light background color
             borderwidth=0,
             relief="flat",
         )
@@ -138,7 +138,7 @@ class ChatbotApp:
         message_frame = ttk.Frame(
             self.chat_window,
             style="MessageFrame.TFrame",  # Added style
-            padding=(10, 5, 0, 5),  # Adjusted padding
+            padding=(10, 5, 20, 5),  # Adjusted padding
         )
         message_frame.pack(side=tk.TOP, fill=tk.BOTH, anchor=tk.NE)  # Anchor to the top-right
 
@@ -146,15 +146,15 @@ class ChatbotApp:
             message_frame,
             text=message,
             font=self.message_font,
-            bg="#DCF8C6",
-            fg="black",
-            wraplength=480,
-            justify="right",  # Align the text to the right
+            bg="#dcdfe2",
+            fg="#000000",
+            wraplength=360,
+            justify="left",  # Align the text to the right
             padx=10,  # Add padding inside the text bubble (left padding decreased)
-            pady=5,  # Add padding inside the text bubble
-            bd=1,  # Add a border around the text bubble
+            pady=20,  # Add padding inside the text bubble
+            bd=5,  # Add a border around the text bubble
             relief=tk.SOLID,  # Set the border style to solid
-            borderwidth=1,  # Set the border width
+            borderwidth=0,  # Set the border width
             highlightthickness=0,  # Remove the highlight thickness
             highlightbackground="#DCF8C6",  # Set the highlight background color to match the text bubble background
             highlightcolor="#DCF8C6"  # Set the highlight color to match the text bubble background
@@ -178,15 +178,15 @@ class ChatbotApp:
             message_frame,
             text=message,
             font=self.message_font,
-            bg="white",
-            fg="black",
-            wraplength=480,
-            justify="right",
+            bg="#387ab2",
+            fg="#ffffff",
+            wraplength=360,
+            justify="left",
             padx=10,  # Add padding inside the text bubble
-            pady=5,  # Add padding inside the text bubble
-            bd=1,  # Add a border around the text bubble
+            pady=20,  # Add padding inside the text bubble
+            bd=5,  # Add a border around the text bubble
             relief=tk.SOLID,  # Set the border style to solid
-            borderwidth=1,  # Set the border width
+            borderwidth=0,  # Set the border width
             highlightthickness=0,  # Remove the highlight thickness
             highlightbackground="white",  # Set the highlight background color to match the text bubble background
             highlightcolor="white"  # Set the highlight color to match the text bubble background
