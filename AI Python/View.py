@@ -171,6 +171,7 @@ class ChatbotApp:
         self.send_button.config(bg="#F0F0F0", fg="black")
 
     def display_user_message(self, message):
+<<<<<<< Updated upstream
         self.user_listbox.insert(tk.END, message)  # Remove the newline character at the end of the message
         self.user_listbox.itemconfig(tk.END, bg=self.user_message_color, fg="black")  # Set message color
         self.user_listbox.see(tk.END)  # Scroll to the latest message
@@ -179,6 +180,70 @@ class ChatbotApp:
        self.bot_listbox.insert(tk.END, message)  # Remove the newline character at the end of the message
        self.bot_listbox.itemconfig(tk.END, bg=self.bot_message_color, fg="black")  # Set message color
        self.bot_listbox.see(tk.END)  # Scroll to the latest message
+=======
+        message_frame = ttk.Frame(
+            self.chat_window,
+            style="MessageFrame.TFrame",  # Added style
+            padding=(10, 5, 20, 5),  # Adjusted padding
+        )
+        message_frame.pack(side=tk.TOP, fill=tk.BOTH, anchor=tk.NE)  # Anchor to the top-right
+
+        message_label = tk.Label(
+            message_frame,
+            text=message,
+            font=self.message_font,
+            bg="#dcdfe2",
+            fg="#000000",
+            wraplength=360,
+            justify="left",  # Align the text to the right
+            padx=10,  # Add padding inside the text bubble (left padding decreased)
+            pady=8,  # Add padding inside the text bubble
+            bd=5,  # Add a border around the text bubble
+            relief=tk.SOLID,  # Set the border style to solid
+            borderwidth=0,  # Set the border width
+            highlightthickness=0,  # Remove the highlight thickness
+            highlightbackground="#DCF8C6",  # Set the highlight background color to match the text bubble background
+            highlightcolor="#DCF8C6"  # Set the highlight color to match the text bubble background
+        )
+        message_label.pack(side=tk.RIGHT)  # Pack the label to the right side
+
+        if self.last_displayed_bot_response:
+            self.last_displayed_bot_response.pack_configure(pady=5)
+
+        self.last_displayed_user_message = message_frame
+
+    def display_bot_response(self, message):
+        message_frame = ttk.Frame(
+            self.chat_window,
+            style="MessageFrame.TFrame",  # Added style
+            padding=(10, 5, 0, 5),  # Adjusted padding
+        )
+        message_frame.pack(side=tk.TOP, fill=tk.BOTH, anchor=tk.NE)
+
+        message_label = tk.Label(
+            message_frame,
+            text=message,
+            font=self.message_font,
+            bg="#387ab2",
+            fg="#ffffff",
+            wraplength=360,
+            justify="left",
+            padx=10,  # Add padding inside the text bubble
+            pady=8,  # Add padding inside the text bubble
+            bd=5,  # Add a border around the text bubble
+            relief=tk.SOLID,  # Set the border style to solid
+            borderwidth=0,  # Set the border width
+            highlightthickness=0,  # Remove the highlight thickness
+            highlightbackground="white",  # Set the highlight background color to match the text bubble background
+            highlightcolor="white"  # Set the highlight color to match the text bubble background
+        )
+        message_label.pack(side=tk.LEFT)
+
+        if self.last_displayed_user_message:
+            self.last_displayed_user_message.pack_configure(pady=5)
+
+        self.last_displayed_bot_response = message_frame
+>>>>>>> Stashed changes
 
     def handle_input(self):
         user_input = self.input_field.get()
